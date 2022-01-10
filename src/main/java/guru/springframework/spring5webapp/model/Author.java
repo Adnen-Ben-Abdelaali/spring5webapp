@@ -33,6 +33,7 @@ public class Author {
 
     /* setters and getters */
 
+    // id is aut generated : no setter
     public long getId() {
 
         return this.id;
