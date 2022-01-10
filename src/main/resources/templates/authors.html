@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Authors</title>
+</head>
+<body>
+    <ul th:each=" author : ${authors}">
+        <li th:text="${author.id}"></li>
+        <li th:text="${author.firstName}"></li>
+        <li th:text="${author.lastName}"></li>
+        <li th:each="book : ${author.books}">
+           <ul>
+               <li th:text="${book.id}"></li>
+               <li th:text="${book.title}"></li>
+               <li th:text="${book.isbn}"></li>
+               <li th:text="${book.publisher.name}"></li>
+           </ul>
+        </li>
+    </ul>
+</body>
+</html>
