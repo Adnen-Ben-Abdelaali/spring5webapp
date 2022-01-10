@@ -14,8 +14,16 @@ public class Book {
     private String title;
     private String isbn;
     @OneToOne
-    private Publisher publisher;
+    /*
+    Hibernate creates the join column automatically and names it PUBLISHER_ID ,but we can specify its name manually by
+    adding the @JoinColumn(name="TheNameWeWantForTheJoinColumn")
 
+    EXAMPLE ::
+    @OneToOne
+    @JoinColumn(name="myPublisher")
+    private Publisher publisher;
+     */
+    private Publisher publisher;
     @ManyToMany
     @JoinTable(name="author_book",
                 joinColumns=@JoinColumn(name="book_id"),
@@ -24,17 +32,19 @@ public class Book {
 
     public Book() {}
 
-    public Book(String title, String isbn) {
+    public Book(String title, String isbn, Publisher publisher) {
 
         this.title = title;
         this.isbn = isbn;
+        this.publisher = publisher;
     }
 
 
-    public Book(String title, String isbn, Set<Author> authors) {
+    public Book(String title, String isbn, Publisher publisher,Set<Author> authors) {
 
         this.title = title;
         this.isbn = isbn;
+        this.publisher = publisher;
         this.authors = authors;
     }
 
@@ -75,6 +85,16 @@ public class Book {
     public Set<Author> getAuthors() {
 
         return this.authors;
+    }
+
+    public void setPublisher(Publisher publisher) {
+
+        this.publisher = publisher;
+    }
+
+    public Publisher getPublisher() {
+
+        return publisher;
     }
 
     @Override
